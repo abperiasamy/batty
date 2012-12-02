@@ -2,8 +2,8 @@
 #include "pitches.h"
 
 
-#define LV_EZ4   /* High-end Ultrasonic Range Finder - LV-EZ4 (Maxbotix). */
-// #define HC_SRF04 /* Ultrasonic Range Finder - HC-SRF04 (Virtuabotix). */
+// #define LV_EZ4   /* High-end Ultrasonic Range Finder - LV-EZ4 (Maxbotix). */
+#define HC_SRF04 /* Ultrasonic Range Finder - HC-SRF04 (Virtuabotix). */
 
 
 #define BUZZER_PIN 8
@@ -58,7 +58,7 @@ lv_ez4_distance () {
 #elif defined HC_SRF04
 
 /* Ultrasonic Range Finder - HC-SRF04. */
-Ultrasonic ultrasonic (ULTRASONIC_TRIGGER_PIN, ULTRASONIC_ECHO_PIN);
+Ultrasonic ultrasonic (ULTRASONIC_HC_SRF04_TRIGGER_PIN, ULTRASONIC_HC_SRF04_ECHO_PIN);
 static inline float
 hc_srf04_distance ()
 {
@@ -67,7 +67,7 @@ hc_srf04_distance ()
   cm = ultrasonic.convert (microsec, Ultrasonic::CM);
   return cm;
 }
-#define distance() lv_hc_srf04_distance ()
+#define distance() hc_srf04_distance ()
 
 #endif
 
