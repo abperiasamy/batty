@@ -1,7 +1,22 @@
-/*************************************************
- * Public Constants
- *************************************************/
+/*
+  boot-tone.h: Play some meoldy on boot.
 
+  Author: Anand Babu Periasamy <ab@hyperbotics.org>
+  Copyright (c) 2012 Anand Babu Periasamy
+
+  This is free software; you can redistribute it and/or modify
+  it under the terms of the GNU Affero General Public License as published
+  by the Free Software Foundation; either version 3 of the License,
+  or (at your option) any later version.
+
+  Based on Arduino.cc Tone Tutorial (Public Domain)
+  URL: http://arduino.cc/en/Tutorial/tone
+*/
+
+#ifndef BOOT_SPLASH_H
+#define BOOT_SPLASH_H
+
+/*  Music Notes */
 #define NOTE_B0  31
 #define NOTE_C1  33
 #define NOTE_CS1 35
@@ -91,3 +106,7 @@
 #define NOTE_CS8 4435
 #define NOTE_D8  4699
 #define NOTE_DS8 4978
+
+void boot_tone (int pin);
+
+#endif BOOT_SPLASH_H
