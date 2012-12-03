@@ -1,8 +1,8 @@
 #include "pitches.h"
 
 /* Uncomment one of these sensors at a time. */
-// #define LV_EZ4   /* High-end Ultrasonic Range Finder - LV-EZ4 (Maxbotix). */
-#define HC_SRF04 /* Ultrasonic Range Finder - HC-SRF04 (Virtuabotix). */
+#define LV_EZ4   /* High-end Ultrasonic Range Finder - LV-EZ4 (Maxbotix). */
+// #define HC_SRF04 /* Ultrasonic Range Finder - HC-SRF04 (Virtuabotix). */
 
 #define BUZZER_PIN 8
 #define BUZZER_FREQ 4000 /* Piezo Buzzer (PS1240) is loudest at 4 KHz. */
@@ -116,13 +116,14 @@ void loop()
   dist = distance ();
   Serial.print ("Distance(CM): ");
   Serial.println (dist);
-  /*
-  if ((dist > 5000) || (dist == 0))
+
+  /* Not so accurate beyond this point. */
+  if ((dist > 500) || (dist == 0))
     {
       delay (50);
       return;
     }
-  */
+
   buzz ((sqrt ((unsigned int)dist)));
   //  delay (2000);
 }
