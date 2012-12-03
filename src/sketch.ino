@@ -11,8 +11,8 @@
 */
 
 
-// #define LV_EZ4
-#define HC_SRF04
+#define LV_EZ4
+// #define HC_SRF04
 
 #ifdef LV_EZ4
 
@@ -36,8 +36,10 @@ void loop()
 {
   float dist;
   dist = lv_ez4_distance (ULTRASONIC_LV_EZ4_AN_PIN);
-  Serial.print ("Distance(CM): ");
-  Serial.println (dist);
+  Serial.print ("Distance: ");
+  Serial.print (dist);
+  Serial.println (" cm");
+
   /*
   if ((dist > 5000) || (dist == 0))
     {
@@ -45,7 +47,8 @@ void loop()
       return;
     }
   */
-  ps1240_buzz (BUZZER_PS1240_PIN, (sqrt ((unsigned int)dist)));
+  //   ps1240_buzz (BUZZER_PS1240_PIN, sqrt ((unsigned int) dist));
+  ps1240_buzz (BUZZER_PS1240_PIN, (unsigned int) dist);
 }
 
 #endif
@@ -75,8 +78,9 @@ void loop()
 {
   float dist;
   dist = hc_srf04_distance (ULTRASONIC_HC_SRF04_ECHO_PIN, ULTRASONIC_HC_SRF04_TRIGGER_PIN);
-  Serial.print ("Distance(CM): ");
-  Serial.println (dist);
+  Serial.print ("Distance: ");
+  Serial.print (dist);
+  Serial.println (" cm");
 
   if ((dist > 500) || (dist == 0))
     {
@@ -84,7 +88,8 @@ void loop()
       return;
     }
 
-  ps1240_buzz (BUZZER_PS1240_PIN, (sqrt ((unsigned int)dist)));
+  //   ps1240_buzz (BUZZER_PS1240_PIN, sqrt ((unsigned int) dist));
+  ps1240_buzz (BUZZER_PS1240_PIN, (unsigned int) dist);
 }
 
 #endif
