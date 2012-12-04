@@ -48,7 +48,7 @@ void loop()
     }
   */
   //   ps1240_buzz (BUZZER_PS1240_PIN, sqrt ((unsigned int) dist));
-  ps1240_buzz (BUZZER_PS1240_PIN, (unsigned int) dist);
+  ps1240_buzz (BUZZER_PS1240_PIN, (unsigned int) dist/2);
 }
 
 #endif
@@ -89,7 +89,7 @@ void loop()
     }
 
   //   ps1240_buzz (BUZZER_PS1240_PIN, sqrt ((unsigned int) dist));
-  ps1240_buzz (BUZZER_PS1240_PIN, (unsigned int) dist);
+  ps1240_buzz (BUZZER_PS1240_PIN, (unsigned int) dist/2);
 }
 
 #endif

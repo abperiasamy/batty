@@ -32,10 +32,24 @@ hc_srf04_distance (int echo_pin, int trigger_pin)
   digitalWrite (trigger_pin, HIGH); // trigger the sensor
   delayMicroseconds (10);
   digitalWrite (trigger_pin, LOW); // turn off the trigger
-  duration = float (pulseIn (echo_pin, HIGH)); // read the number of microseconds for echo
+  duration = (float) pulseIn (echo_pin, HIGH); // read the number of microseconds for echo
 
-  /* Sound travels at 29.1 ųs/cm and we had to go there and back so divide by 2 */
-  cm = (duration / 29.1) / 2;
+  /*
+    Speed of sound at sea level: 340.29 m/s
+    Convert m/s to cm/us = 0.034029 cm/us
+
+     1 us  -> 0.034029 cm
+     t us -> ? cm
+
+     x = t * 0.034029 cm/us
+
+     t is duration for the round-trip. t/2 is the actual distance to object.
+     x = t/2 * 0.034029 cm/us
+     x = t * 0.0170145 cm/us (pre-calculate to save micro-controller cycles).
+   */
+
+  /* Note: others seem to use (x * 1/2 * 1/27.6233) = 0.0181006613 */
+  cm = duration * 0.0170145;
 
   return cm;
 }
