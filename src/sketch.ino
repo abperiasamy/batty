@@ -11,20 +11,23 @@
 */
 
 
-#define LV_EZ4
-// #define HC_SRF04
+// #define LV_EZ4
+#define HC_SRF04
 
 #ifdef LV_EZ4
 
-#include "ps1240_piezo_buzzer.hpp"
-#include "boot-tone.hpp"
-#include "ultrasonic-lv-ez4.hpp"
+#include "ps1240_piezo_buzzer.h"
+#include "boot-tone.h"
+#include "ultrasonic-lv-ez4.h"
 
-/* Piezo Buzzer - PS1240 */
+/* Piezo Buzzer - PS1240. */
 #define BUZZER_PS1240_PIN 8
 
 /* Ultrasonic Range Finder - Maxbotix LV-EZ4. */
 #define ULTRASONIC_LV_EZ4_AN_PIN  5
+
+/* Vibration Motor - ROB-08449. */
+#define VIBE_MOTOR_AN_PIN 4
 
 void setup()
 {
@@ -35,7 +38,7 @@ void setup()
 void loop()
 {
   float dist;
-  dist = lv_ez4_distance (ULTRASONIC_LV_EZ4_AN_PIN);
+  dist = ultrasonic_distance_lv_ez4 (ULTRASONIC_LV_EZ4_AN_PIN);
   Serial.print ("Distance: ");
   Serial.print (dist);
   Serial.println (" cm");
@@ -56,28 +59,32 @@ void loop()
 #ifdef HC_SRF04
 /* This part of the code uses Virtuabotix Ultrasonic Sensor - HC-SRF04 */
 
-#include "boot-tone.hpp"
-#include "ps1240_piezo_buzzer.hpp"
-#include "ultrasonic-hc-srf04.hpp"
+#include "boot-tone.h"
+#include "ps1240_piezo_buzzer.h"
+#include "ultrasonic-hc-srf04.h"
 
-/* Piezo Buzzer - PS1240 */
+/* Piezo Buzzer - PS1240. */
 #define BUZZER_PS1240_PIN 8
 
 /* Ultrasonic Range Finder - HC-SRF04. */
-#define ULTRASONIC_HC_SRF04_TRIGGER_PIN    2
-#define ULTRASONIC_HC_SRF04_ECHO_PIN       3
+#define ULTRASONIC_HC_SRF04_TRIGGER_AN_PIN    2
+#define ULTRASONIC_HC_SRF04_ECHO_AN_PIN       3
+
+/* Vibration Motor - ROB-08449. */
+#define VIBE_MOTOR_AN_PIN 4
 
 void setup()
 {
   Serial.begin (9600);
-  hc_srf04_init (ULTRASONIC_HC_SRF04_ECHO_PIN, ULTRASONIC_HC_SRF04_TRIGGER_PIN);
+  ultrasonic_init_hc_srf04 (ULTRASONIC_HC_SRF04_ECHO_AN_PIN, ULTRASONIC_HC_SRF04_TRIGGER_AN_PIN);
+  // vibe_motor_init_rob_08449 (VIBE_MOTOR_AN_PIN);
   boot_tone (BUZZER_PS1240_PIN);
 }
 
 void loop()
 {
   float dist;
-  dist = hc_srf04_distance (ULTRASONIC_HC_SRF04_ECHO_PIN, ULTRASONIC_HC_SRF04_TRIGGER_PIN);
+  dist = ultrasonic_distance_hc_srf04 (ULTRASONIC_HC_SRF04_ECHO_AN_PIN, ULTRASONIC_HC_SRF04_TRIGGER_AN_PIN);
   Serial.print ("Distance: ");
   Serial.print (dist);
   Serial.println (" cm");

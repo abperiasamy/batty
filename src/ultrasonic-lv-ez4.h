@@ -14,6 +14,6 @@
 #define ULTRASONIC-LV-EZ4_HPP
 
 /* Ultrasonic Range Finder - Maxbotix LV-EZ4. */
-float lv_ez4_distance (int pin);
+float ultrasonic_distance_lv_ez4 (int pin);
 
 #endif

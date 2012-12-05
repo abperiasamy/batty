@@ -16,7 +16,7 @@
 #ifndef ULTRASONIC-HC-SRF04_HPP
 #define ULTRASONIC-HC-SRF04_HPP
 
-float hc_srf04_init (int echo_pin, int trigger_pin);
-float hc_srf04_distance (int echo_pin, int trigger_pin);
+float ultrasonic_init_hc_srf04 (int echo_pin, int trigger_pin);
+float ultrasonic_distance_hc_srf04 (int echo_pin, int trigger_pin);
 
 #endif
